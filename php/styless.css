@@ -1,8 +1,7 @@
 body{
     height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
+    width: 70vw;
+    margin-left: 20vw;
 }
 
 h1{
@@ -15,22 +14,19 @@ h1{
     align-items: center;
 }
 
-.admi{
-    height: 50vh;
-    width:70vw ;
-    background-color:antiquewhite;
-}
-
 ul{
     display: flex;
     justify-content:space-between;
     list-style-type: none;
 }
-label{
+.pasco{
+    background-color: aqua;
     display: flex;
     justify-content: center;
 }
-form{
+.para{
     display: flex;
     justify-content: center;
+    
+
 }
