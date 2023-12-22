@@ -16,6 +16,7 @@ $_SESSION["mdp"] = "jam";
 </head>
 <body>
     <h1>Panneau d'administration </h1>
+
     <ul>
         <a href="?page=accueil"> <li>Accueil</li> </a>
         <a href="?page=utilisateurs"> <li>Utilisateurs</li> </a>
@@ -29,13 +30,15 @@ $_SESSION["mdp"] = "jam";
             } 
         ?>
     </ul>
-
     <?php
+
 //accueil//
 
         if (isset ($_GET ['page']) && $_GET['page'] == 'accueil'){   
             if (isset ($_SESSION ['connexionok']) && $_SESSION['connexionok'] == true){
                 echo' Welcome '.$_SESSION["Nom"].' '.$_SESSION["Prénom"] ;
+                echo "<h3 class='pasco'> Vous êtes connecté.</h3>"; 
+                
             }
             if (!isset ($_SESSION ['connexionok']) || $_SESSION['connexionok']== false){
                 echo' 
@@ -50,10 +53,12 @@ $_SESSION["mdp"] = "jam";
             if (isset($_POST["ident"]) && isset($_POST["mdp"])){
                 if ($_POST["ident"] == $_SESSION["ident"] && $_POST["mdp"] == $_SESSION["mdp"]){
                     $_SESSION["connexionok"] = true;
+
                     $_SESSION["Nom"] = "Taibi"; 
                     $_SESSION["Prénom"] = "Jamal";
                     $_SESSION["Age"] = 32;
                     $_SESSION["role"] = "Etudiant";
+                     
                     header("Location: ?page=accueil");
                     exit(); 
                 }
@@ -66,10 +71,11 @@ $_SESSION["mdp"] = "jam";
 
 //utilisateur//
 
-        elseif (isset ($_GET ['page']) && $_GET['page'] == 'utilisateurs'){
-
+        if (isset ($_GET ['page']) && $_GET['page'] == 'utilisateurs'){
             if (isset ($_SESSION ['connexionok']) && $_SESSION['connexionok'] == true){
                 echo' Welcome '.$_SESSION["Nom"].' '.$_SESSION["Prénom"] ;
+                echo "<h3 class='pasco'> Vous êtes connecté.</h3>"; 
+                
             }
             if (!isset ($_SESSION ['connexionok']) || $_SESSION['connexionok']== false){
                 echo' 
@@ -83,12 +89,15 @@ $_SESSION["mdp"] = "jam";
             }
             if (isset($_POST["ident"]) && isset($_POST["mdp"])){
                 if ($_POST["ident"] == $_SESSION["ident"] && $_POST["mdp"] == $_SESSION["mdp"]){
+
                     $_SESSION["connexionok"] = true;
+
                     $_SESSION["Nom"] = "Taibi"; 
                     $_SESSION["Prénom"] = "Jamal";
                     $_SESSION["Age"] = 32;
                     $_SESSION["role"] = "Etudiant";
-                    echo "<h3 class='pasco'> Vous êtes connecté.</h3>"; 
+                    header("Location: ?page=utilisateurs");
+                    exit(); 
                 }
              else { 
                     $_SESSION["connexionok"] = false;
@@ -101,11 +110,10 @@ $_SESSION["mdp"] = "jam";
                     echo "<h3 class='pasco'> Vous devez être connecté pour avoir accès.</h3>";
                 }
             else{
-                
                 echo '<h2 class="modif">Vos informations utilisateur</h2>';
                 echo 'Nom : '. (isset($_SESSION["Nom"]) ? $_SESSION["Nom"] : '') . '<br>';
                 echo 'Prénom : ' . (isset($_SESSION["Prénom"]) ? $_SESSION["Prénom"] : '') . '<br>';
-                echo 'Age : ' . (isset($_SESSION["Age"]) ? $_SESSION["Age"] : '') . '<br>';
+                echo 'Age : ' . (isset($_SESSION["Age"]) ? $_SESSION["Age"] : '') .' ans' .'<br>';
                 echo 'Role : ' . (isset($_SESSION["role"]) ? $_SESSION["role"] : '');
                 }
             }
@@ -113,9 +121,27 @@ $_SESSION["mdp"] = "jam";
 
 //parametre//
 
-        elseif (isset($_GET['page']) && $_GET['page'] == 'paramètres') {
+        if (isset($_GET['page']) && $_GET['page'] == 'paramètres') {
+            $afficherFormulaire = true;
+
+            function genererFormulaire() {
+                $formulaire = '<form class="para" method="POST">
+                                   <label for="">Nom</label> 
+                                   <input type="text" id="Nom" name="Nom" value="'. (isset($_SESSION["Nom"]) ? $_SESSION["Nom"] : '') . '"/> 
+                                   <label for="">Prénom</label> 
+                                   <input type="text" id="Prénom" name="Prénom" value="' . (isset($_SESSION["Prénom"]) ? $_SESSION["Prénom"] : '') . '"/> 
+                                   <label for="">Age</label>
+                                   <input type="number" id="" name="Age" value="' . (isset($_SESSION["Age"]) ? $_SESSION["Age"] : '') .'">
+                                   <label for="">Rôle</label>
+                                   <input type="text" name="role" id="role" value="' . (isset($_SESSION["role"]) ? $_SESSION["role"] : '') . '">
+                                   <input type="submit" name="modif" value="Modifier">
+                               </form>';
+                return $formulaire;
+            }
+
             if (isset ($_SESSION ['connexionok']) && $_SESSION['connexionok'] == true){
                 echo' Welcome '.$_SESSION["Nom"].' '.$_SESSION["Prénom"] ;
+                echo "<h3 class='pasco'> Vous êtes connecté.</h3>";
             }
             else{
                 echo' 
@@ -127,59 +153,62 @@ $_SESSION["mdp"] = "jam";
                         <input type="submit" value = "Se connecter">
                     </form>';
             }
-
+        
             if (isset($_POST["ident"]) && isset($_POST["mdp"])){
                 if ($_POST["ident"] == $_SESSION["ident"] && $_POST["mdp"] == $_SESSION["mdp"]){
+
                     $_SESSION["connexionok"] = true;
+
                     $_SESSION["Nom"] = "Taibi"; 
                     $_SESSION["Prénom"] = "Jamal";
                     $_SESSION["Age"] = 32;
                     $_SESSION["role"] = "Etudiant";
+                    header("Location: ?page=paramètres");
+                    exit(); 
                    echo "<h3 class='pasco'> Vous êtes connecté.</h3>";
+
                 }
              else{ 
                     $_SESSION["connexionok"] = false;
                         echo"<h3 class='pasco'> Identifiant ou mot de passe incorect </h3>";
                 }
             }
+
             elseif (isset ($_GET ['page']) && $_GET['page'] == 'paramètres') {
                 if (!isset ($_SESSION ['connexionok']) || $_SESSION ['connexionok'] == false) {
+
                     echo "<h3 class='pasco'> Vous devez être connecté pour avoir accès.</h3>";
                 } 
                 else{
-                    echo '<h2 class="modif"> Modification de vos paramètres </h2>';
-                    echo '
-                    <form class="para" method="POST">
-                        <label for="">Nom</label> 
-                        <input type="text" id="Nom" name="Nom" value="'. (isset($_SESSION["Nom"]) ? $_SESSION["Nom"] : '') .'"/> 
-                        <label for="">Prénom</label> 
-                        <input type="text" id="Prénom" name="Prénom" value="'. (isset($_SESSION["Prénom"]) ? $_SESSION["Prénom"] : '') .'"/> 
-                        <label for="">Age</label>
-                        <input type="number" id="" name="Age" value="'. (isset($_SESSION["Age"]) ? $_SESSION["Age"] : '') .'">
-                        <label for="">Rôle</label>
-                        <input type="text" name="role" id="role" value="'. (isset($_SESSION["role"]) ? $_SESSION["role"] : '') .'">
-                        <input type="submit" name="modif" value="Modifier">
-                    </form>';
 
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modif'])) {
+                    echo '<h2 class="modif"> Modification de vos paramètres </h2>';
+                
+                if ($afficherFormulaire) {
+
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modif'])){
                         if (!empty($_POST["Nom"]) && !empty($_POST["Prénom"]) && !empty($_POST["Age"]) && !empty($_POST["role"])) {
+                            $_SESSION["chamrempli"] = true;
                             $_SESSION["Nom"] = $_POST["Nom"];
                             $_SESSION["Prénom"] = $_POST["Prénom"];
                             $_SESSION["Age"] = $_POST["Age"];
                             $_SESSION["role"] = $_POST["role"];
-                            echo "<p class='success'>Vos paramètres ont été modifiés avec succès !</p>";
-                        } else {
+
+                            echo "<p class='success'>Vos paramètres ont été modifiés avec succès !</p>";   
+                        }else{
                             echo "<p class='error'>Veuillez remplir tous les champs avant de modifier vos paramètres.</p>";
                         }
+                        $afficherFormulaire = false;
+                    } else{
+                        echo genererFormulaire();
                     }
                 }
+                }
+                }      
             }
-        }
 
 //connexion//
 
-        elseif (isset ($_GET ['page']) && $_GET['page'] == 'connexion'){
-           
+        if (isset ($_GET ['page']) && $_GET['page'] == 'connexion'){
             if (!isset ($_SESSION ['connexionok']) || $_SESSION['connexionok']== false){
                 echo' 
                     <form method="POST">
@@ -209,7 +238,7 @@ $_SESSION["mdp"] = "jam";
 
 // deconexion//
 
-        elseif (isset ($_GET ['page']) && $_GET['page'] == 'deconnexion'){      
+        if (isset ($_GET ['page']) && $_GET['page'] == 'deconnexion'){      
             session_destroy();
             header("Location: ?page=accueil");
             exit();
