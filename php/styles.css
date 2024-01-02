@@ -1,0 +1,68 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(128, 128, 128, 0.1);
+}
+ul{
+    display: flex;
+    justify-content:space-around;
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+input{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.utile{
+    margin-bottom: 0.5vh;
+}
+
+.navbar{
+    height: 15vh;
+    width: 70vw;
+    background-color: white;
+}
+.titre{
+    height: 5vh;
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    color: white;
+    display: flex;
+   justify-content: center;
+}
+.formconect{
+    height: 20vh;
+    width: 70vw;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    flex-direction: column;
+}
+.pasco{
+    background:rgba(255, 0, 0, 0.415);
+    display: flex;
+    justify-content: center;
+}
+.avertco{
+    background:rgba(255, 255, 0, 0.457);
+    display: flex;
+    justify-content: center;
+}
+.co{
+    background:rgba(0, 128, 0, 0.377);
+    display: flex;
+    justify-content: center;
+}
+.para{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
