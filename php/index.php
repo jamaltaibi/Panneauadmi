@@ -12,7 +12,7 @@ $_SESSION["mdp"] = "jam";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="navbar">
@@ -30,10 +30,9 @@ $_SESSION["mdp"] = "jam";
                 } 
             ?>
         </ul>
-    </div>
+    </div> 
     
     <?php
-
 //accueil//
 
         if (isset ($_GET ['page']) && $_GET['page'] == 'accueil'){  
